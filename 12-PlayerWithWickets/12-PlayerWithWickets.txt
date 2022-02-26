@@ -1,0 +1,105 @@
+##Program 1
+
+using System;
+using System.Collections.Generic;
+
+namespace SportzInteractive
+{
+    public class Lineups
+    {
+        public string PlayerId { get; set; }
+        public string PlayerName { get; set; }
+    }
+
+    public class BowlingStats
+    {
+        public string PlayerId { get; set; }
+        public string Wickets { get; set; }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            List<Lineups> lineupObj = new List<Lineups>
+        {
+            new Lineups(){ PlayerId = "21", PlayerName = "Y. Chahal"},
+            new Lineups(){ PlayerId = "22", PlayerName = "Bhuvneshwar Kumar"},
+            new Lineups(){ PlayerId = "23", PlayerName = "Jasprit Bumrah"},
+            new Lineups(){ PlayerId = "24", PlayerName = "Hardik Pandya"},
+            new Lineups(){ PlayerId = "25", PlayerName = "Ravindra Jadeja"},
+            new Lineups(){ PlayerId = "26", PlayerName = "Mohammed Shami"},
+        };
+            List<BowlingStats> bowlingstatsObj = new List<BowlingStats>
+        {
+            new BowlingStats(){ PlayerId = "21", Wickets = "2"},
+            new BowlingStats(){ PlayerId = "22", Wickets = "1"},
+            new BowlingStats(){ PlayerId = "23", Wickets = "3"},
+            new BowlingStats(){ PlayerId = "26", Wickets = "1"},
+        };
+
+            foreach (var lineup in lineupObj)
+            {
+                string player = lineup.PlayerName;
+                string wicket = "0";
+                foreach (var bowlingstats in bowlingstatsObj)
+                {
+                    if (lineup.PlayerId == bowlingstats.PlayerId)
+                    {
+                        wicket = bowlingstats.Wickets;
+                    }                  
+                }
+                Console.WriteLine("Player Name: " + player + ", Wickets: " + wicket);
+            }
+            Console.ReadKey();
+        }
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Program 2
+
+using Newtonsoft.Json;
+using System;
+
+namespace SportzInteractive
+{
+    public class Program
+    {
+        public static void Main()
+        {
+
+            string Lineup = @"[
+								{'PlayerId' : 21,'PlayerName': 'Y. Chahal'},
+								{'PlayerId' : 22,'PlayerName': 'Bhuvneshwar Kumar'},
+								{'PlayerId' : 23,'PlayerName': 'Jasprit Bumrah'},
+								{'PlayerId' : 24,'PlayerName': 'Hardik Pandya'},
+								{'PlayerId' : 25,'PlayerName': 'Ravindra Jadeja'},
+								{'PlayerId' : 26,'PlayerName': 'Mohammed Shami'}
+								]";
+
+            string Bowlingstats = @"[
+									{'PlayerId' : 21, 'Wickets': 2},
+									{'PlayerId' : 22, 'Wickets': 1},
+									{'PlayerId' : 23, 'Wickets': 3},
+									{'PlayerId' : 26, 'Wickets': 1}
+									]";
+
+            dynamic listOfLineups = JsonConvert.DeserializeObject(Lineup);
+            dynamic listOfBowlingStats = JsonConvert.DeserializeObject(Bowlingstats);
+
+            foreach (var lineup in listOfLineups)
+            {
+                string player = lineup["PlayerName"];
+                int wicket = 0;
+                foreach (var bowlingstat in listOfBowlingStats)
+                {
+                    if (lineup["PlayerId"] == bowlingstat["PlayerId"])
+                        wicket = bowlingstat["Wickets"];
+                }
+                Console.WriteLine("Player Name: " + player + ", Wickets: " + wicket);
+            }
+            Console.ReadKey();
+        }
+    }
+}

@@ -1,0 +1,30 @@
+using System;
+
+namespace SportzInteractive
+{
+    class Program
+    {
+        static void Main(string[] args)
+
+        {
+            {
+                int firstNumber = 5, secondNumber = 10;
+
+                Console.WriteLine("Values before swapping are:");
+                Console.WriteLine("First Number =" + firstNumber);
+                Console.WriteLine("Second Number=" + secondNumber);
+
+                //swapping
+                firstNumber = firstNumber + secondNumber;
+                secondNumber = firstNumber - secondNumber;
+                firstNumber = firstNumber - secondNumber;
+
+                Console.WriteLine("Values after swapping are:");
+                Console.WriteLine("First Number =" + firstNumber);
+                Console.WriteLine("Second Number=" + secondNumber);
+            }
+
+            Console.ReadKey();
+        }
+    }
+}

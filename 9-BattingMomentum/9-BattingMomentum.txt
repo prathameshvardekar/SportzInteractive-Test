@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+
+namespace SportzInteractive
+{
+    public class ScoreCard
+    {
+        public string Batsman { get; set; }
+        public int RunsScored { get; set; }
+        public double StrikeRate { get; set; }
+
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            List<ScoreCard> score = new List<ScoreCard> {
+                new ScoreCard {
+                                 Batsman = "Virat Kohli",
+                                 RunsScored = 50,
+                                 StrikeRate = 78.30
+                              },
+                new ScoreCard {
+                                Batsman = "M.S.Dhoni",
+                                RunsScored = 61,
+                                StrikeRate = 58.90
+                              },
+                new ScoreCard {
+                                Batsman = "Rohit Sharma",
+                                RunsScored = 13,
+                                StrikeRate = 124.0
+                               }
+                };
+
+            var momentum = 0.0;
+            var momentumBatsman = "";
+
+            score.ForEach(x => {
+                var temp = x.RunsScored * x.StrikeRate;
+                if (temp > momentum)
+                {
+                    momentum = temp;
+                    momentumBatsman = x.Batsman;
+                }
+            });
+            Console.WriteLine(momentumBatsman);
+            Console.ReadKey();
+
+        }
+    }
+}

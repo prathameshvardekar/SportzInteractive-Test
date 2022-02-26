@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+
+namespace SportzInteractive
+{
+    public class Player
+    {
+        public string PlayerName { get; set; }
+        public int IsRetired { get; set; }
+    }
+    public class Program
+    {
+        public static void Main()
+        {
+            List<Player> PlayerList = new List<Player> {
+                new Player { PlayerName = "Virat Kohli", IsRetired = 1 },
+                new Player { PlayerName = "M.S.Dhoni",  IsRetired = 1 },
+                new Player { PlayerName = "Hardik Pandya",    IsRetired = 1 },
+                new Player { PlayerName = "Rohit Sharma", IsRetired = 1 },
+                new Player { PlayerName = "Sachin Tendulkar", IsRetired = 0 },
+                new Player { PlayerName = "Rahul Dravid", IsRetired = 0 },
+                new Player { PlayerName = "Saurav Ganguly", IsRetired = 0 },
+                new Player { PlayerName = "VVS Laxman", IsRetired = 0 },
+                };
+
+            // list.ForEach is a linq actor not a loop (But it iterates through the list)
+            PlayerList.ForEach(x => {
+                if (x.IsRetired == 1)
+                {
+                    x.IsRetired = 0;
+                }
+                else
+                {
+                    x.IsRetired = 1;
+                }
+                Console.WriteLine("Player = " + x.PlayerName + ", IsRetired = " + x.IsRetired);
+            });
+            Console.ReadKey();
+
+        }
+    }
+}

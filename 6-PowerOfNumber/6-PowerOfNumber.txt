@@ -1,0 +1,23 @@
+using System;
+
+namespace SportzInteractive
+{
+    class Program
+    {
+        public static int power(int n, int powerValue)
+        {
+            if (powerValue != 0)
+                return (n * power(n, powerValue - 1));
+            else
+                return 1;
+        }
+        static void Main(string[] args)
+        {
+            int num = 5, powerValue = 2;
+            int result = power(num, powerValue);
+            Console.Write("{0}^{1}= {2}", num, powerValue, result);
+            Console.ReadKey();
+        }
+    }
+}
+

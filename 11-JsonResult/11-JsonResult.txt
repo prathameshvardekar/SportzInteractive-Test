@@ -1,0 +1,45 @@
+
+using System;
+using System.Collections.Generic;
+using System.Web.Script.Serialization;
+namespace SportzInteractive
+{
+public class Player
+{
+    public string PlayerId { get; set; }
+    public string Position { get; set; }
+    public string Name_Full { get; set; }
+    public bool IsCaptain { get; set; }
+}
+
+public class Team
+{
+    public string Name_Full { get; set; }
+    public string Name_Short { get; set; }
+    public List<Player> Players { get; set; }
+}
+
+class Program
+{
+
+    public static void Main()
+    {
+        List<Player> players = new List<Player>
+        {
+            new Player(){ PlayerId = "5380", Position = "1", Name_Full = "David Warner", IsCaptain = true},
+
+            new Player(){PlayerId = "3722", Position = "2", Name_Full = "Shikhar Dhawan", IsCaptain = false},
+        };
+
+        Team team = new Team()
+        { Name_Full = "Sunrisers Hyderabad", Name_Short = "SRH", Players = players};
+
+        var jsonTeamInfo = new JavaScriptSerializer().Serialize(team);
+        Console.WriteLine(jsonTeamInfo);
+
+
+        Console.ReadKey();
+    }
+
+}
+}

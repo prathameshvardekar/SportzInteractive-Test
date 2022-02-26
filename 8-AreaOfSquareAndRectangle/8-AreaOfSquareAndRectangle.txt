@@ -1,0 +1,35 @@
+using System;
+
+namespace SportzInteractive
+{
+    class Area
+    {
+
+        public void area(int side)
+        {
+            int areaOfSquare = side * side;
+            Console.WriteLine("Side Of Square : " + side);
+            Console.WriteLine("Area Of Square : " + areaOfSquare);
+        }
+
+        public void area(int length, int width)
+        {
+            int areaOfRectangle = length * width;
+            Console.WriteLine("Length and Width Of Rectangle : " + length + " and " + width);
+            Console.WriteLine("Area Of Rectangle : " + areaOfRectangle);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Area areaObject = new Area();
+            areaObject.area(4);
+            areaObject.area(7, 5);
+
+            Console.ReadKey();
+        }
+
+    }
+}
+
